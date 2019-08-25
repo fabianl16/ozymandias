@@ -31,20 +31,53 @@
       <!--<div class="phone"><span>Call Today</span>320-123-4321</div>-->
     </div>
 
-  
+@guest 
+@if(Route::has('register'))
 <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
       <ul class="nav navbar-nav navbar-right">
-        
-        <li><a href="{{ route('login') }}" class="page-scroll">@lang('Login')</a></li>
-        <li><a href="#about" class="page-scroll">@lang('Services')</a></li>
+    
+        <li><a href="{{ route('showMonitoring') }}" class="page-scroll">@lang('Services')</a></li>
         <li><a href="#services" class="page-scroll">@lang('Ammonia')</a></li>
         <li><a href="#portfolio" class="page-scroll">@lang('About')</a></li>
+        <li><a href="{{ route('login') }}" class="page-scroll">@lang('Login')</a></li>
+
+        @endif
       </ul>
     </div>
-    <!-- Collect the nav links, forms, and other content for toggling -->
+@else
+
+<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+  <ul class="nav navbar-nav navbar-right">
+    <li><a href="#about" class="page-scroll">@lang('Services')</a></li>
+        <li><a href="#services" class="page-scroll">@lang('Ammonia')</a></li>
+        <li><a href="#portfolio" class="page-scroll">@lang('About')</a></li>
+
+    <li class="nav-item dropdown">
+                                <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
+                                    {{ Auth::user()->name }} <span class="caret"></span>
+                                </a>
+
+                                <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+                                    <a class="dropdown-item" href="{{ route('logout') }}"
+                                       onclick="event.preventDefault();
+                                                     document.getElementById('logout-form').submit();">
+                                        {{ __('Logout') }}
+                                    </a>
+
+                                    <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                                        @csrf
+                                    </form>
+                                </div>
+                            </li>
     
-    <!-- /.navbar-collapse --> 
+  </ul>
+  
+</div>
+
+
   </div>
+
+  @endguest
 </nav>
 
 @yield('content')

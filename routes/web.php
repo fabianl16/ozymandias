@@ -15,7 +15,11 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Auth::routes();
+
+//ApiREST
+ 	
+Route::get('monitoring', 'MonitoringController@show')->name('showMonitoring');
+Route::post('monitoring/insert', 'MonitoringController@store');
 
 
 //Login
@@ -36,15 +40,5 @@ Route::post('password/reset', 'Auth\ResetPasswordController@reset')->name('passw
 Route::get('email/verify', 'Auth\VerificationController@show')->name('verification.notice');
 Route::get('email/verify/{id}', 'Auth\VerificationController@verify')->name('verification.verify');
 Route::get('email/resend', 'Auth\VerificationController@resend')->name('verification.resend');
-
-
-
-
-
-
-
-
-
-
 
 Route::get('/home', 'HomeController@index')->name('home');
