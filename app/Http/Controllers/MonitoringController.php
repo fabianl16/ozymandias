@@ -33,10 +33,10 @@ class MonitoringController extends Controller
         $monitoring->flujo = $request->flujo;
         $monitoring->salinidad = $request->salinidad;
         $monitoring->save();
-        return response()->json(['OK'], 201);
+        return response()->json(['OK'], 200);
 
     	}
-    	return response()->json(['No autorizado'], 200);
+    	return response()->json(['No autorizado'], 401);
        
 
 
